@@ -1,0 +1,207 @@
+* {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+.abeezee-regular {
+  font-family: "ABeeZee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.abeezee-regular-italic {
+  font-family: "ABeeZee", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+
+.afacad-uniquifier {
+  font-family: "Afacad", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+
+
+
+/* HEADER */
+.header {
+    background-color: #222222;
+    color: white;
+    font-family: "ABeeZee", sans-serif;
+    width: 100vw;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.list-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.first-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+.end-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+}
+.btn-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    width: 25%;
+}
+.li-header {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.a-header { 
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    transition: 0.3s ease-in-out;
+}
+.a-header:hover {
+    background-color: #363636;
+    transform: scale(1.1);
+}
+
+#logo-header {
+    height: 50px;
+    position: absolute;
+    left: 0.5%;
+    top: 15%;
+    transition: 0.3s ease-in-out;
+}
+
+
+/* SECTION 1 */
+#section-pages1 {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+.content-section1 {
+    display: flex;
+    position: relative;
+}
+.bg-img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -99;
+    overflow: hidden;
+}
+.bg-colorMask {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgb(255, 255, 255, 0.73);
+    z-index: -99;
+}
+.infos1 {
+    display: grid;
+    grid-template-columns: 1fr 0.6fr;
+    z-index: 0;
+    width: 100%;
+    font-family: "ABeeZee", sans-serif;
+    align-items: center;
+    padding: 0px 30px;
+}
+.left1 {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    align-items: center;
+}
+.tittle1-sec1 {
+    font-family: "Afacad", sans-serif;
+    font-size: 76px;
+    font-weight: bolder;
+    height: 30%;
+    display: flex;
+    align-items: center;
+}
+.text1 {
+    background-color: #222222;
+    color: white;
+    border-radius: 14px;
+    display: flex;
+    height: 70%;
+    width: 80%;
+    align-items: center;
+    padding: 20px 30px;
+    font-size: 18px;
+}
+.right1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+.tittle2-sec1 {
+    font-family: "Afacad", sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+    background-color: #222222;
+    color: white;
+    padding: 0 10px;
+}
+.logo1 {
+    display: flex;
+    height: 300px;
+}
+.deco-triangle1 {
+    position: absolute;
+    bottom: -10px;
+    right: 0px;
+    z-index: -99;
+    overflow: hidden;
+    img{
+        height: 330px;
+    }
+}
+.deco-risk1 {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    z-index: -98;
+    overflow: hidden;
+    img{
+        height: 300px;
+    }
+}
+
+/* SECTION 2 */
+#section-pages2 {
+    min-height: 100vh;
+    width: 100vw;
+}
+/* SECTION 3 */
+#section-pages3 {
+    min-height: 100vh;
+    width: 100vw;
+}
+/* FOOTER */
