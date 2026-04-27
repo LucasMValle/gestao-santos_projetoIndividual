@@ -40,6 +40,7 @@ function validarCad() {
     let tel = ipt_tel.value;
     let senha = ipt_senha.value;
     let Csenha = ipt_Csenha.value;
+    let users = [];
     let temArroba = false;
 
     if(nome == '' ||  email == '' || tel == '' || nome == '' || Csenha == '' ) {
@@ -65,6 +66,7 @@ function validarCad() {
                         alerts.innerHTML = `Senha deve conter pelo menos 3 caracteres.`;
                     } else {
                         if(Csenha == senha) {
+                            users.push(email);
                             alerts.innerHTML = `<span style="color: #2bff32;">Registrado com sucesso!</span>`;
                         } else {
                             alerts.innerHTML = `As senhas devem ser iguais!`;  
