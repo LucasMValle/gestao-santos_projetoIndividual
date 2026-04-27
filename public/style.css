@@ -450,3 +450,139 @@
     width: 100vw;
     background-color: #222222;
 }
+
+
+
+
+
+
+
+
+/* LOGIN */
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-color: #222222;
+}
+.left {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    
+}
+.bg-img {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    img {
+        display: flex;
+        width: 50%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.right {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.forms {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    padding: 30px 100px;
+    border-radius: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.24);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #d9d9d9;
+    input {
+        border-radius: 10px;
+        font-size: 15px;
+        padding: 5px;
+        border: none;
+        outline: none;
+        transition: 0.2s ease-in-out;
+    }
+    input:focus {
+        outline: 2px solid #d9d9d9;
+        outline-offset: 5px;
+        margin: 10px;
+        background-color: #363636;
+        color: #d9d9d9;
+    }
+}
+#button-forms {
+    display: flex;
+    button {
+        height: 60px;
+        width: 120px;
+        font-family: "Afacad", sans-serif;
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        border: none;
+        background-color: #222222;
+        color: #d9d9d9;
+        transition: 0.3s ease-in-out;
+    }
+    button:hover {
+        background-color: transparent;
+        border: 1px solid #222222;
+        color: #222222;
+    }
+}
+#copy {
+    color: #d9d9d9;
+    display: flex;
+    padding-top: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    display: flex;
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    left: 41.3%;
+    top: 21.3%;
+}
+.button-home {
+    display: flex;
+    margin: 20px;
+    button {
+        height: 40px;
+        width: 80px;
+        font-family: "Afacad", sans-serif;
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        border: none;
+        background-color: #d9d9d9;
+        color: #363636;
+        transition: 0.3s ease-in-out;
+    }
+    button:hover {
+        background-color: transparent;
+        border: 1px solid #d9d9d9;
+        color: #d9d9d9;
+    }
+}
