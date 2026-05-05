@@ -23,16 +23,16 @@ id_jogador int not null primary key auto_increment,
 nome_jogador varchar(50),
 idade int,
 dt_nasc datetime,
-valor_mercado decimal,
-fk_contrato int not null
+valor_mercado decimal
 );
-alter table jogador add constraint fk_jogador_contrato foreign key jogador(fk_contrato) references contrato(id_contrato);
+
 
 create table contrato (
-id_contrato int not null primary key auto_increment,
+id_contrato int not null auto_increment,
+fk_jogador int not null,
 tipo_contrato varchar(30),
 salario decimal,
 validade_contrato datetime,
-fk_jogador int not null
+primary key (id_contrato, fk_jogador)
 );
 alter table contrato add constraint fk_contrato_jogador foreign key contrato(fk_jogador) references jogador(id_jogador);
