@@ -36,17 +36,147 @@
                     <img src="../assets/icons/search.svg" alt="">
                 </button>
             </div>
+            <button id="add-jogador">+</button>
         </div>
         <div class="jogadores-all">
             <div class="jogadores-box">
                 <button class="jogador-card">
-                    <img src="" alt="">
+                    <img src="../assets/imgs/jogador.png" alt=""> 
                     <span>Neymar</span>
                 </button>
-                <button class="jogador-card">aaaaaaaaa</button>
+                <button class="jogador-card">
+                    <img src="../assets/imgs/jogador.png" alt="">
+                    <span>aaaaaaaaa</span>
+                </button>
+                <button class="jogador-card">
+                    <img src="../assets/imgs/jogador.png" alt="">
+                    <span>aaaaaaaaa</span>
+                </button>
+                <button class="jogador-card">
+                    <img src="../assets/imgs/jogador.png" alt="">
+                    <span>aaaaaaaaa</span>
+                </button>
+                <button class="jogador-card">
+                    <img src="../assets/imgs/jogador.png" alt="">
+                    <span>aaaaaaaaa</span>
+                </button>
+                <button class="jogador-card">
+                    <img src="../assets/imgs/jogador.png" alt="">
+                    <span>aaaaaaaaa</span>
+                </button>
+                <button class="jogador-card">
+                    <img src="../assets/imgs/jogador.png" alt="">
+                    <span>aaaaaaaaa</span>
+                </button>
             </div>
         </div>
     </div>
+
+
+
+
+
+<dialog id="modal-plantel-cad">
+        <div class="content-modal-add">
+            <h1>Cadastro de Jogadores</h1>
+            <div class="btn-modal">
+                <button id="btn-x-plantel2">X</button>
+            </div>
+            <div class="campo-modal">
+                <span>Nome:</span>
+                <input type="text" id="ipt_nome" placeholder="Nome do jogador">
+                
+            </div>
+            <div class="campo-modal">
+                <span>Idade:</span>
+                <input type="number" id="ipt_idade" placeholder="Idade do jogador">
+            </div>
+            <div class="campo-modal">
+                <span>Data de nascimento:</span>
+                <input type="date" id="ipt_data" placeholder="Data de nascimento do jogador">
+            </div>
+            <div class="campo-modal">
+                <span>Tipo do contrato:</span>
+                <div class="select-container">
+                    <select name="Selecione" id="">
+                        <option value="1">Definitivo</option>
+                        <option value="2">Empréstimo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="campo-modal">
+                <span>Início do contrato:</span>
+                <input type="date" id="ipt_inicio" placeholder="Data início do contrato">
+            </div>
+            <div class="campo-modal">
+                <span>Fim do contrato:</span>
+                <input id="ipt_fim" type="date" placeholder="Data vencimento contrato">
+            </div>
+            <div class="campo-modal">
+                <span>Salário:</span>
+                <input id="ipt_salario" type="number" placeholder="Valor salário">
+            </div>
+            <div class="campo-modal">
+                <span>Cláusulas:</span>
+                <input id="ipt_clausula" type="text" placeholder="Peculiaridades do contrato">
+            </div>
+            <div class="btn-modal">
+                <button>Cadastrar</button>
+            </div>
+        </div>
+    </dialog>
+
+
+
+
+
+    <dialog id="modal-plantel">
+        <div class="content-modal-plantel">
+            <div class="btn-modal">
+                <button id="btn-x-plantel">X</button>
+            </div>
+            <div class="btn-modal">
+                <button id="btn-remov-plantel2">Remover</button>
+            </div>
+            <img src="../assets/imgs/jogador.png" alt="">
+            <div class="identidade">
+                <div class="infos-jogador">
+                    <span>Nome: </span>
+                    <div id="nome-jogador"> teste</div>
+                </div>
+                <div class="infos-jogador">
+                    <span>Idade: </span>
+                    <div id="idade-jogador"></div>
+                </div>
+                <div class="infos-jogador">
+                    <span>Data de nascimento: </span>
+                    <div id="nascimento-jogador"></div>
+                </div>
+                <div class="infos-jogador">
+                    <span>Tipo do contrato: </span>
+                    <div id="contrato-jogador"></div>
+                </div>
+                <div class="infos-jogador">
+                    <span>Início do contrato: </span>
+                    <div id="inicio-jogador"></div>
+                </div>
+                <div class="infos-jogador">
+                    <span>Fim do contrato: </span>
+                    <div id="fim-jogador"></div>
+                </div>
+                <div class="infos-jogador">
+                    <span>Salário: </span>
+                    <div id="salario-jogador"></div>
+                </div>
+                <div class="infos-jogador">
+                    <span>Cláusulas: </span>
+                    <div id="clausula-jogador"></div>
+                </div>
+
+            </div>
+        </div>
+    </dialog>
 </body>
 </html>
+<script src="../js/modalPlantel.js"></script>
 <script src="../js/userInfo.js"></script>

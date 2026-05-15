@@ -205,6 +205,26 @@ a:hover {
     font-weight: bold;
     color: white;
 }
+.grafico-receita {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+.grafico-pie {
+    /* Remova o display: flex daqui se possível */
+    height: 500px; 
+    width: 500px;
+    position: relative; /* Essencial para o Chart.js se posicionar corretamente */
+    margin: auto; /* Para centralizar, use margin em vez de flex no pai */
+}
+
+#pie-chart {
+    /* Garante que o canvas use o espaço disponível */
+    width: 100% !important;
+    height: 100% !important;
+}
 #tittle-receitas {
     font-family: "Afacad", sans-serif;
     display: flex;
@@ -222,7 +242,7 @@ a:hover {
     display: flex;
     border-radius: 20px;
 
-    max-height: 450px;
+    max-height: 625px;
     width: 100%;
     padding: 30px;
     flex-direction: column;
@@ -275,6 +295,86 @@ a:hover {
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+#receita-modal::backdrop {
+    background-color: rgb(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+#receita-modal {
+    align-self: center;
+    justify-self: center;
+    height: 70vh;
+    width: 50vw;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+    border: 1px solid rgb(255, 204, 0);
+    position: relative;
+}
+.content-modal {
+    display: flex;
+    min-height: 100%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    gap: 20px;
+    padding: 30px 30px;
+    font-family: "Afacad", sans-serif;
+
+}
+.campo-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 5px;
+    font-size: 30px;
+    span {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+    input {
+        display: flex;
+        border-radius: 5px;
+        font-size: 20px;
+        padding: 5px 5px;
+        border: none;
+        border: 2px solid rgb(255, 204, 0);
+    }
+}
+
+.btn-modal button {
+    display: flex;
+    background-color: #363636;
+    border-radius: 20px;
+    font-family: "ABeeZee", sans-serif;
+    padding: 20px;
+    color: #d9d9d9;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s ease-in-out;
+}
+
+.btn-modal button:hover {
+    background-color: transparent;
+    color: #222222;
+    box-shadow: inset 0 0 0 1px #222222;
+}
+#btn-x {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    position: fixed;
+    right: 30%;
+}
+
 
 
 
@@ -337,12 +437,13 @@ a:hover {
 }
 .jogadores-box {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     height: 100%;
-    align-items: center;
+    padding: 20px;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
 
      /* From https://css.glass */
     background: rgba(255, 255, 255, 0.2);
@@ -355,4 +456,160 @@ a:hover {
 .jogador-card {
     display: flex;
     flex-direction: column;
+    height: 250px;
+    width: 200px;
+    border-radius: 20px;
+    border: none;
+    border: 2px solid #222222;
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    img {
+        height: 200px;
+        border-radius: 20px 20px 0px 0px ;
+    }
+    span{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-family: "Afacad", sans-serif;
+        font-size: 20px;
+    }
+}
+.jogador-card:hover {
+    transform: scale(1.1);
+}
+
+
+
+
+#modal-plantel {
+    align-self: center;
+    justify-self: center;
+    height: 70vh;
+    width: 50vw;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+    border: 1px solid rgb(255, 204, 0);
+    position: relative;
+}
+.content-modal-plantel {
+    display: flex;
+    min-height: 100%;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    font-family: "Afacad", sans-serif;
+    img {
+        display: flex;
+        height: 510px;
+        justify-self: start;
+    }
+}
+.identidade {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 30px;
+    font-size: 20px;
+    gap: 10px;
+}
+.infos-jogador{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    div {
+        display: flex;
+        width: 100%;
+    }
+}
+#btn-x-plantel {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    position: fixed;
+    right: 27%;
+    top: 17%;
+}
+
+#modal-plantel-cad {
+    align-self: center;
+    justify-self: center;
+    height: 70vh;
+    width: 50vw;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+    border: 1px solid rgb(255, 204, 0);
+    position: relative;
+}
+#btn-x-plantel2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    position: fixed;
+    right: 27%;
+    top: 17%;
+}
+#btn-remov-plantel2 {
+    width: 100px;
+    height: 50px;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    position: fixed;
+    right: 27%;
+    bottom: 17%;
+}
+#add-jogador {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    position: fixed;
+    left: 27%;
+    top: 8%;
+    background-color: #222222;
+    color: #f1f1f1;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#add-jogador:hover {
+    transform: scale(1.1);
+    background-color: transparent;
+    color: #222222;
+    border: 1px solid #222222;
+}
+.content-modal-add {
+    display: flex;
+    min-height: 100%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    gap: 20px;
+    font-family: "Afacad", sans-serif;
+    padding: 30px 30px;
+
+}
+#modal-plantel-cad::backdrop {
+    background-color: rgb(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }

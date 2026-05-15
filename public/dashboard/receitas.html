@@ -59,10 +59,66 @@
             </div>
             </div>
             <div class="right-receitas">
-                <div class="grafico-receita">aaaaaaaaa</div>
+                <div class="grafico-receita">
+                    <div class="grafico-pie">
+                        <canvas id="pie-chart"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+
+
+
+    <dialog id="receita-modal">
+        <div class="content-modal">
+            <h1>Cadastro de receitas</h1>
+            <div class="btn-modal">
+                <button id="btn-x">X</button>
+            </div>
+            <div class="campo-modal">
+                <span>Tipo:
+                    <div class="select-container">
+                    <select name="Selecione" id="">
+                        <option value="1">Receita</option>
+                        <option value="2">Despesa</option>
+                    </select>
+                </div>
+                </span>
+                
+            </div>
+            <div class="campo-modal">
+                <span>Jogador:
+                    <input type="checkbox">
+                </span>
+            </div>
+            <div class="campo-modal">
+                <span>Título:</span>
+                <input type="text" placeholder="Insira o título da receita">
+            </div>
+            <div class="campo-modal">
+                <span>Descrição:</span>
+                <input type="text" placeholder="Descrição da receita">
+            </div>
+            <div class="campo-modal">
+                <span>Valor:</span>
+                <input type="number" placeholder="Valor da receita">
+            </div>
+            <div class="campo-modal">
+                <span>Bônus:
+                    <input id="check-bonus" type="checkbox">
+                </span>
+                <input id="ipt_bonus" type="number" placeholder="Se houver valores bônus">
+            </div>
+            <div class="btn-modal">
+                <button>Cadastrar</button>
+            </div>
+        </div>
+    </dialog>
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/modal.js"></script>
 <script src="../js/userInfo.js"></script>
+<script src="../js/chart.js"></script>

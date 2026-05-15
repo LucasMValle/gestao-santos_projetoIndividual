@@ -13,8 +13,10 @@ function validarSessao() {
 }
 
 function limparSessao() {
-    sessionStorage.clear();
-    window.location = "../login.html";
+    if(!nome) {
+        sessionStorage.clear();
+        window.location = "../login.html";
+    }
 }
 
 // carregamento (loading)

@@ -55,3 +55,53 @@ new Chart(ctx, {
     }
   }
 });
+
+
+
+
+window.addEventListener('load', () => {
+    const elementoCanvas = document.getElementById('pie-chart');
+
+    if (elementoCanvas) {
+        const ctx = elementoCanvas.getContext('2d');
+
+        const meuGrafico = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Receitas', 'Despesas'],
+                datasets: [{
+                    label: 'Valor total',
+                    data: [19000, 14000],
+                    backgroundColor: ['#44ff00', '#f40707'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#ffffff', // Cor da legenda
+                            font: {
+                                family: 'Afacad',
+                                size: 14
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Quantidade de receitas e despesas',
+                        color: '#ffffff', // Cor do título
+                        font: {
+                            size: 18,
+                            family: 'Afacad'
+                        }
+                    }
+                }
+            }
+        });
+    }
+});
