@@ -11,11 +11,12 @@ senha varchar(30)
 
 create table receitas (
 id_receita int not null primary key auto_increment,
+tipo varchar(25),
+jogador boolean,
 titulo_receita varchar(50),
-descricao varchar(200),
+descricao varchar(255),
 valor decimal,
-fk_usuario int not null,
-constraint fk_id_user foreign key receitas(fk_usuario) references user(id)
+bonus decimal
 );
 
 create table jogador (
@@ -32,7 +33,10 @@ id_contrato int not null auto_increment,
 fk_jogador int not null,
 tipo_contrato varchar(30),
 salario decimal,
-validade_contrato datetime,
+inicio_contrato datetime,
+final_contrato datetime,
+clausulas varchar(255),
 primary key (id_contrato, fk_jogador)
 );
 alter table contrato add constraint fk_contrato_jogador foreign key contrato(fk_jogador) references jogador(id_jogador);
+alter table contrato add constraint chk_tipo_contrato check (tipo_contrato in ('Definitivo', 'Empréstimo'));

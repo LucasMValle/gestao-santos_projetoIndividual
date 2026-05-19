@@ -9,6 +9,7 @@
     }
 
     function logout() {
-        localStorage.removeItem('NOME_USUARIO');
-        localStorage.removeItem('ID_USUARIO');
+        sessionStorage.clear();
+        sessionStorage.removeItem('NOME_USUARIO');
+        sessionStorage.removeItem('ID_USUARIO');
     }   

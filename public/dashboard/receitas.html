@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/styleDash.css">
     <title>Santos FC</title>
 </head>
-<body>
+<body onload="listar()">
     <div class="nav-bar">
         <div class="info-user">
             <div class="logo">
@@ -31,28 +31,8 @@
         <span id="tittle-receitas">Receitas e despesas</span>
         <div class="all-receitas">
             <div class="left-receitas">
-            <div class="mostra-receitas">
-                <div class="receita">
-                    <span>receita 300 reais</span>
-                </div>
-                <div class="receita">
-                    <span>receita 300 reais</span>
-                </div>
-                <div class="receita">
-                    <span>receita 300 reais</span>
-                </div><div class="receita">
-                    <span>receita 300 reais</span>
-                </div><div class="receita">
-                    <span>receita 300 reais</span>
-                </div><div class="receita">
-                    <span>receita 300 reais</span>
-                </div><div class="receita">
-                    <span>receita 300 reais</span>
-                </div><div class="receita">
-                    <span>receita 300 reais</span>
-                </div><div class="receita">
-                    <span>receita 300 reais</span>
-                </div>
+            <div class="mostra-receitas" id="div_receita">
+                
             </div>
             <div class="filtro-box">
 
@@ -80,9 +60,9 @@
             <div class="campo-modal">
                 <span>Tipo:
                     <div class="select-container">
-                    <select name="Selecione" id="">
-                        <option value="1">Receita</option>
-                        <option value="2">Despesa</option>
+                    <select name="Selecione" id="tipo_select">
+                        <option value="Receita">Receita</option>
+                        <option value="Despesa">Despesa</option>
                     </select>
                 </div>
                 </span>
@@ -90,20 +70,20 @@
             </div>
             <div class="campo-modal">
                 <span>Jogador:
-                    <input type="checkbox">
+                    <input id="ipt_jogador" type="checkbox">
                 </span>
             </div>
             <div class="campo-modal">
                 <span>Título:</span>
-                <input type="text" placeholder="Insira o título da receita">
+                <input id="ipt_titulo" type="text" placeholder="Insira o título da receita">
             </div>
             <div class="campo-modal">
                 <span>Descrição:</span>
-                <input type="text" placeholder="Descrição da receita">
+                <input id="ipt_desc" type="text" placeholder="Descrição da receita">
             </div>
             <div class="campo-modal">
                 <span>Valor:</span>
-                <input type="number" placeholder="Valor da receita">
+                <input id="ipt_valor" type="number" placeholder="Valor da receita">
             </div>
             <div class="campo-modal">
                 <span>Bônus:
@@ -112,7 +92,10 @@
                 <input id="ipt_bonus" type="number" placeholder="Se houver valores bônus">
             </div>
             <div class="btn-modal">
-                <button>Cadastrar</button>
+                <button type="button" onclick="cadastrar()">Cadastrar</button>
+            </div>
+            <div id="cardErro">
+                <div id="mensagem_erro"></div>
             </div>
         </div>
     </dialog>
@@ -122,3 +105,133 @@
 <script src="../js/modal.js"></script>
 <script src="../js/userInfo.js"></script>
 <script src="../js/chart.js"></script>
+
+<script>
+    function limparFormulario() {
+            // Limpa os campos de texto e número voltando para string vazia
+            document.getElementById('ipt_titulo').value = '';
+            document.getElementById('ipt_desc').value = '';
+            document.getElementById('ipt_valor').value = '';
+            document.getElementById('ipt_bonus').value = '';
+
+            // Reseta o Select para a primeira opção ('Receita')
+            document.getElementById('tipo_select').value = 'Receita';
+
+            // Desmarca as caixas de seleção (checkboxes)
+            document.getElementById('ipt_jogador').checked = false;
+            document.getElementById('check-bonus').checked = false;
+            }
+
+    function cadastrar() {
+        let tituloVar = ipt_titulo.value;
+        let tipoVar = document.getElementById('tipo_select').value;
+        let jogadorVar = document.getElementById('ipt_jogador').checked;
+        let descricaoVar = ipt_desc.value;
+        let valorVar = Number(ipt_valor.value);
+        let bonusVar = Number(ipt_bonus.value);
+
+        if (tituloVar == "" || valorVar == "") {
+            alert("Por favor, preencha o título e o valor.");
+            return;
+        }
+
+
+
+
+        fetch("/receita/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        tipoServer: tipoVar,
+        jogadorServer: jogadorVar,
+        tituloServer: tituloVar,
+        descricaoServer: descricaoVar,
+        valorServer: valorVar,
+        bonusServer: bonusVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Receita cadastrada com sucesso!";
+
+          limparFormulario();
+          listar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+        return false;
+    }
+
+
+
+    function listar() {
+
+        fetch("/receita/listar", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+      })
+    
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+
+          return resposta.json();
+        } else {
+          throw "Houve um erro ao tentar listar as receitas!";
+        }
+      })
+      .then(function (dadosReceitas) {
+        console.log("TESTE - O que veio do banco:", dadosReceitas);
+
+        // 3. Aqui dentro de dadosReceitas está a lista que veio do banco de dados
+        console.log("Dados recebidos do banco:", dadosReceitas);
+
+        // Limpa a div antes de listar para não duplicar os dados antigos
+        // (Troque 'mostra_receitas' pelo ID real da sua div de listagem no HTML)
+        let divReceitas = document.getElementById("div_receita"); 
+        divReceitas.innerHTML = ""; 
+
+        // Faz um laço de repetição para colocar cada linha do banco na tela
+        for (let i = 0; i < dadosReceitas.length; i++) {
+            let receitaAtual = dadosReceitas[i];
+
+            if(receitaAtual.tipo == 'Receita') {
+                divReceitas.innerHTML += `
+                    <div class="receita">
+                        <span><b id='tipo_receita'>${receitaAtual.tipo}</b> - ${receitaAtual.titulo_receita}: R$ ${receitaAtual.valor}</span>
+                    </div>`;
+            } else {
+                divReceitas.innerHTML += `
+                    <div class="receita">
+                        <span><b id='tipo_despesa'>${receitaAtual.tipo}</b> - ${receitaAtual.titulo_receita}: R$ ${receitaAtual.valor}</span>
+                    </div>`;
+            }
+            
+        }
+    })
+    .catch(function (erro) {
+        console.log(`#ERRO: ${erro}`);
+    });
+
+    return false;
+}
+
+
+</script>

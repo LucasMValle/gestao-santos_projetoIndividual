@@ -241,6 +241,7 @@ a:hover {
 .mostra-receitas{
     display: flex;
     border-radius: 20px;
+    font-family: "Afacad", sans-serif;
 
     max-height: 625px;
     width: 100%;
@@ -612,4 +613,17 @@ a:hover {
     background-color: rgb(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+}
+
+
+
+
+#tipo_receita{
+    color: rgb(0, 202, 0);
+}
+#tipo_despesa {
+    color: rgb(255, 72, 72);
+}
+#mensagem_erro {
+    font-size: 30px;
 }
