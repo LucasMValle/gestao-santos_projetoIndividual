@@ -1,12 +1,14 @@
-const btn_plantel = document.querySelectorAll(".jogador-card")
+const containerJogadores = document.querySelector(".jogadores-box")
 const plantel_popup = document.querySelector("#modal-plantel")
 const btn_fecharPlantel = document.querySelector("#btn-x-plantel")
 
-btn_plantel.forEach(botao => {
-    botao.onclick = function () {
-        plantel_popup.showModal();
-    };
-});
+
+// containerJogadores.addEventListener("click", function (event) {
+//     const botao = event.target.closest(".jogador-card");
+//     if (botao) {
+//         plantel_popup.showModal();
+//     }
+// });
 
 btn_fecharPlantel.onclick = function () {
     plantel_popup.close();

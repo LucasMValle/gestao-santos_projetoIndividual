@@ -17,7 +17,7 @@ function cadastrar(req, res) {
     }
 
     receitaModel.cadastrar(tipo, jogador, titulo, descricao, valor, bonus).then(function(resposta){
-        res.status(200).send("Carro criado com sucesso");
+        res.status(200).send("receita criada com sucesso");
     }).catch(function(erro){
         res.status(500).json(erro.sqlMessage);
     })

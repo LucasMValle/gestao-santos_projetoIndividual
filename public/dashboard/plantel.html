@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/styleDash.css">
     <title>Santos FC</title>
 </head>
-<body>
+<body onload="listar()">
     <div class="nav-bar">
         <div class="info-user">
             <div class="logo">
@@ -40,34 +40,7 @@
         </div>
         <div class="jogadores-all">
             <div class="jogadores-box">
-                <button class="jogador-card">
-                    <img src="../assets/imgs/jogador.png" alt=""> 
-                    <span>Neymar</span>
-                </button>
-                <button class="jogador-card">
-                    <img src="../assets/imgs/jogador.png" alt="">
-                    <span>aaaaaaaaa</span>
-                </button>
-                <button class="jogador-card">
-                    <img src="../assets/imgs/jogador.png" alt="">
-                    <span>aaaaaaaaa</span>
-                </button>
-                <button class="jogador-card">
-                    <img src="../assets/imgs/jogador.png" alt="">
-                    <span>aaaaaaaaa</span>
-                </button>
-                <button class="jogador-card">
-                    <img src="../assets/imgs/jogador.png" alt="">
-                    <span>aaaaaaaaa</span>
-                </button>
-                <button class="jogador-card">
-                    <img src="../assets/imgs/jogador.png" alt="">
-                    <span>aaaaaaaaa</span>
-                </button>
-                <button class="jogador-card">
-                    <img src="../assets/imgs/jogador.png" alt="">
-                    <span>aaaaaaaaa</span>
-                </button>
+                
             </div>
         </div>
     </div>
@@ -98,9 +71,9 @@
             <div class="campo-modal">
                 <span>Tipo do contrato:</span>
                 <div class="select-container">
-                    <select name="Selecione" id="">
-                        <option value="1">Definitivo</option>
-                        <option value="2">Empréstimo</option>
+                    <select name="Selecione" id="tipo_select">
+                        <option value="Definitivo">Definitivo</option>
+                        <option value="Empréstimo">Empréstimo</option>
                     </select>
                 </div>
             </div>
@@ -121,7 +94,10 @@
                 <input id="ipt_clausula" type="text" placeholder="Peculiaridades do contrato">
             </div>
             <div class="btn-modal">
-                <button>Cadastrar</button>
+                <button onclick="cadastrar()">Cadastrar</button>
+            </div>
+            <div id="cardErro">
+                <div id="mensagem_erro"></div>
             </div>
         </div>
     </dialog>
@@ -142,35 +118,27 @@
             <div class="identidade">
                 <div class="infos-jogador">
                     <span>Nome: </span>
-                    <div id="nome-jogador"> teste</div>
                 </div>
                 <div class="infos-jogador">
                     <span>Idade: </span>
-                    <div id="idade-jogador"></div>
                 </div>
                 <div class="infos-jogador">
                     <span>Data de nascimento: </span>
-                    <div id="nascimento-jogador"></div>
                 </div>
                 <div class="infos-jogador">
                     <span>Tipo do contrato: </span>
-                    <div id="contrato-jogador"></div>
                 </div>
                 <div class="infos-jogador">
                     <span>Início do contrato: </span>
-                    <div id="inicio-jogador"></div>
                 </div>
                 <div class="infos-jogador">
                     <span>Fim do contrato: </span>
-                    <div id="fim-jogador"></div>
                 </div>
                 <div class="infos-jogador">
                     <span>Salário: </span>
-                    <div id="salario-jogador"></div>
                 </div>
                 <div class="infos-jogador">
                     <span>Cláusulas: </span>
-                    <div id="clausula-jogador"></div>
                 </div>
 
             </div>
@@ -180,3 +148,197 @@
 </html>
 <script src="../js/modalPlantel.js"></script>
 <script src="../js/userInfo.js"></script>
+
+<script>
+    function limparFormulario() {
+            // Limpa os campos de texto e número voltando para string vazia
+            document.getElementById('ipt_nome').value = '';
+            document.getElementById('ipt_idade').value = 0;
+            document.getElementById('ipt_data').value = '';
+            document.getElementById('ipt_inicio').value = '';
+            document.getElementById('ipt_fim').value = '';
+            document.getElementById('ipt_salario').value = 0;
+            document.getElementById('ipt_clausula').value = '';
+
+            // Reseta o Select para a primeira opção ('Receita')
+            document.getElementById('tipo_select').value = 'Definitivo';
+
+            
+            }
+
+    function cadastrar() {
+        let nomeVar = ipt_nome.value;
+        let idadeVar = Number(ipt_idade.value);
+        let nascimentoVar = ipt_data.value;
+        let tipoVar = document.getElementById('tipo_select').value;
+        let inicioVar = ipt_inicio.value;
+        let fimVar = ipt_fim.value;
+        let salarioVar = Number(ipt_salario.value);
+        let clausulasVar = ipt_clausula.value;
+
+        if (nomeVar == "" || idadeVar == 0 || nascimentoVar == "" || inicioVar == "" || fimVar == "" || salarioVar == 0) {
+            alert("Por favor, preencha todos os campos.");
+            return;
+        }
+
+
+
+
+        fetch("/plantel/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        idadeServer: idadeVar,
+        nascimentoServer: nascimentoVar,
+        tipoServer: tipoVar,
+        inicioServer: inicioVar,
+        fimServer: fimVar,
+        salarioServer: salarioVar,
+        clausulasServer: clausulasVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Jogador cadastrado com sucesso!";
+
+          limparFormulario();
+          listar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+        return false;
+    }
+
+    function listar() {
+
+        fetch("/plantel/listar", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+      })
+    
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+
+          return resposta.json();
+        } else {
+          throw "Houve um erro ao tentar listplantels!";
+        }
+      })
+      .then(function (dadosJogadores) {
+        console.log("TESTE - O que veio do banco:", dadosJogadores);
+
+        // 3. Aqui dentro de dadosJogadores está a lista que veio do banco de dados
+        console.log("Dados recebidos do banco:", dadosJogadores);
+
+        // Limpa a div antes de listar para não duplicar os dados antigos
+        let divJogadores = document.querySelector(".jogadores-box"); 
+        divJogadores.innerHTML = ""; 
+
+        // Faz um laço de repetição para colocar cada linha do banco na tela
+        for (let i = 0; i < dadosJogadores.length; i++) {
+            let jogadorAtual = dadosJogadores[i];
+
+            divJogadores.innerHTML += `
+                    <button onclick="exibir(${jogadorAtual.id_jogador})" class="jogador-card">
+                        <img src="../assets/imgs/jogador.png" alt="">
+                        <span>${jogadorAtual.nome_jogador}</span>
+                    </button>`;
+            
+        }
+    })
+    .catch(function (erro) {
+        console.log(`#ERRO: ${erro}`);
+    });
+
+    return false;
+}
+
+function exibir(id_jogador) {
+
+    fetch(`/plantel/exibir/${id_jogador}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+      })
+    
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+
+          return resposta.json();
+        } else {
+          throw "Houve um erro ao tentar listplantels!";
+        }
+      })
+      .then(function (infosJogador) {
+        console.log("TESTE - O que veio do banco:", infosJogador);
+
+        // 3. Aqui dentro de infosJogador está a lista que veio do banco de dados
+        console.log("Dados recebidos do banco:", infosJogador);
+
+        let jogadorAtual = infosJogador[0];
+
+        // Limpa a div antes de listar para não duplicar os dados antigos
+        let divJogadores = document.querySelector(".identidade"); 
+
+        
+
+            divJogadores.innerHTML = `
+                    <div class="infos-jogador">
+                        <span>Nome: ${jogadorAtual.nome_jogador}</span>
+                    </div>
+                    <div class="infos-jogador">
+                        <span>Idade: ${jogadorAtual.idade}</span>
+                    </div>
+                    <div class="infos-jogador">
+                        <span>Data de nascimento: ${jogadorAtual.dt_nasc}</span>
+                    </div>
+                    <div class="infos-jogador">
+                        <span>Tipo do contrato: ${jogadorAtual.tipo_contrato}</span>
+                    </div>
+                    <div class="infos-jogador">
+                        <span>Início do contrato: ${jogadorAtual.inicio_contrato}</span>
+                    </div>
+                    <div class="infos-jogador">
+                        <span>Fim do contrato: ${jogadorAtual.final_contrato}</span>
+                    </div>
+                    <div class="infos-jogador">
+                        <span>Salário: ${jogadorAtual.salario}</span>
+                    </div>
+                    <div class="infos-jogador">
+                        <span>Cláusulas: ${jogadorAtual.clausulas}</span>
+                    </div>`;
+
+            document.querySelector("#modal-plantel").showModal();
+        }
+    )
+    .catch(function (erro) {
+        console.log(`#ERRO: ${erro}`);
+    });
+
+    return false;
+}
+
+</script>
+
